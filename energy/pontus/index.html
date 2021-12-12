@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Energy Collector Beta 1.1</title>
+<link rel="shortcut icon" type="image/x-icon" href="icon.ico">
+<!--SEO-->
+<meta name="description" content="Energycollector is fun incremental game. Your mission is to collect as many energies as you can. Progress by purchasing upgrades, farms and power ups.">
+<link rel="canoical" href="http://www.energycollector.se/">
+<script src="js/pace.js"></script><!-- cool loading effect -->
+<!-- Bootstrap -->
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Faster+One|Fugaz+One' rel='stylesheet' type='text/css'>
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="container">
+  <div class="page-header">
+    <h1 id="brand">Energy Collector</h1>
+  </div>
+  <div class="row" id="content">
+    <div class="col-lg-2" id="menubox">
+      <p id="test-lol"></p>
+      <p id="lvl"></p>
+      <!-- LvL TEXT --> 
+      <!-------------------------------------------------------------------------------------------------------------------------
+      	PROGRESSBAR
+        ------------------------------------------------------------------------------------------------------------------------>
+      <div class="progress" onMouseOver="showxp()" onMouseOut="hidexp()"> <span class="sr-only"><p id="lvltext"></p></span>
+        <div class="progress-bar progress-bar-success bar" role="progressbar" id="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%"> </div>
+        <!--progress-bar--> 
+      </div>
+      <!--progress--> 
+      <!-------------------------------------------------------------------------------------------------------------------------
+      	GREEN
+        ------------------------------------------------------------------------------------------------------------------------>
+        <div class="currency"> <img src="images/green.jpg" id="green-img" class="color-img popoverOption" onClick="green_convert()" width="20" height="20" alt="green" data-content="Convert 5000 green to 1000 red" data-toggle="popover" data-placement="top" rel="popover">
+          <p class="color-bold" id="green-cur">0</p>
+        </div>
+        <!-- currency -->
+        <p class="color-small">Green per click: <span id="green-click">1</span><br>
+          Green per sec: <span id="green-sec">0</span></p>
+      <!-------------------------------------------------------------------------------------------------------------------------
+      	RED
+        ------------------------------------------------------------------------------------------------------------------------>
+      <div class="red">
+        <div class="currency"> <img src="images/red.jpg" id="red-img" class="color-img popoverOption" onClick="red_convert()" width="20" height="20" alt="red" data-content="Convert 5000 red to 1000 blue" data-toggle="popover" data-placement="top" rel="popover">
+          <p class="color-bold" id="red-cur">0</p>
+        </div>
+        <!-- currency -->
+        <p class="color-small">Red per click: <span id="red-click">1</span><br>
+          Red per sec: <span id="red-sec">0</span></p>
+      </div>
+      <!-- red --> 
+      <!-------------------------------------------------------------------------------------------------------------------------
+      	BLUE
+        ------------------------------------------------------------------------------------------------------------------------>
+      <div class="blue">
+        <div class="currency"> <img src="images/blue.jpg" id="blue-img" class="color-img popoverOption" id="blue-convert" onClick="blue_convert()" width="20" height="20" alt="blue" data-content="Convert 5000 blue to 1000 orange" data-toggle="popover" data-placement="top" rel="popover">
+          <p class="color-bold" id="blue-cur">0</p>
+        </div>
+        <!-- currency -->
+        <p class="color-small">Blue per click: <span id="blue-click">1</span><br>
+          Blue per sec: <span id="blue-sec">0</span></p>
+      </div>
+      <!-- blue --> 
+      <!-------------------------------------------------------------------------------------------------------------------------
+      	ORANGE
+        ------------------------------------------------------------------------------------------------------------------------>
+      <div class="orange">
+        <div class="currency"> <img src="images/orange.jpg" id="orange-img" class="color-img popoverOption" onClick="orange_convert()" width="20" height="20" alt="orange" data-content="Convert 5000 orange to 1000 purple" data-toggle="popover" data-placement="top" rel="popover">
+          <p class="color-bold" id="orange-cur">0</p>
+        </div>
+        <!-- currency -->
+        <p class="color-small">Orange per click: <span id="orange-click">1</span><br>
+          Orange per sec: <span id="orange-sec">0</span></p>
+      </div>
+      <!-- orange --> 
+      <!-------------------------------------------------------------------------------------------------------------------------
+      	PURPLE
+        ------------------------------------------------------------------------------------------------------------------------>
+      <div class="purple">
+        <div class="currency"> <img src="images/purple.jpg" id="purple-img" class="color-img popoverOption" onClick="purple_convert()" width="20" height="20" alt="purple">
+          <p class="color-bold" id="purple-cur">0</p>
+        </div>
+        <!-- currency -->
+        <p class="color-small">Purple per click: <span id="purple-click">1</span><br>
+          Purple per sec: <span id="purple-sec">0</span></p>
+      </div>
+      <!-- purple -->
+	  <!-------------------------------------------------------------------------------------------------------------------------
+      	PINK
+        ------------------------------------------------------------------------------------------------------------------------>
+      <div class="pink">
+        <div class="currency"> <img src="images/pink.jpg" id="pink-img" class="color-img popoverOption" onClick="pink_convert()" width="20" height="20" alt="pink">
+          <p class="color-bold" id="pink-cur">0</p>
+        </div>
+        <!-- currency -->
+        <p class="color-small">Pink per click: <span id="pink-click">1</span><br>
+          Pink per sec: <span id="pink-sec">0</span></p>
+      </div>
+      <!-- pink --> 
+	  <!-------------------------------------------------------------------------------------------------------------------------
+      	BLACK
+        ------------------------------------------------------------------------------------------------------------------------>
+      <div class="black">
+        <div class="currency"> <img src="images/black.jpg" class="color-img popoverOption" width="20" height="20" alt="black">
+          <p class="color-bold" id="black-cur">0</p>
+        </div>
+        <!-- currency -->
+        <p class="color-small">Black per click: <span id="black-click">1</span><br>
+          Black per sec: <span id="black-sec">0</span></p>
+      </div>
+      <!-- black --> 
+      <p id="unlock-color" class="redproduct popoverOption" onClick="unlockenergy()" role="button" data-content="" data-toggle="popover" data-placement="top" rel="popover">New Energy</p>
+    </div>
+    <!--menubox-->
+    
+    <div class="col-lg-6">
+      <div class="gamebox well" id="gamebox"> </div>
+      <!--gamebox--> 
+      <!-------------------------------------------------------------------------------------------------------------------------
+      	TABS
+        ------------------------------------------------------------------------------------------------------------------------> 
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" id="myTab">
+      	<li class="active"><a href="#Powerups" data-toggle="tab">Powerups</a></li>
+        <li><a href="#Achivements" data-toggle="tab">Achievements</a></li>
+        <li><a href="#Stats" data-toggle="tab">Stats</a></li>
+        <li><a href="#Updates" data-toggle="tab">Updates</a></li>
+      </ul>
+      <!-------------------------------------------------------------------------------------------------------------------------
+      	ACHIVEMENTS
+        ------------------------------------------------------------------------------------------------------------------------> 
+      <!-- Tab panes -->
+      <div class="tab-content">
+      	<div class="tab-pane in active" id="Powerups">
+          <h5>Temporary</h5>
+		  
+          <div id="bsBox0" class="clipbg popoverOption" onClick="powerup0()" data-content="Increase spawnrate by 300%" data-original-title="The Hammer" title data-toggle="popover" data-placement="top" rel="popover">
+			<div id="clip0" class="clipBox"></div>
+		  </div>
+		  <div id="bsBox2" class="clipbg popoverOption" onClick="powerup2()" data-content="Unlock at lvl 10" data-original-title="Clockwork" title data-toggle="popover" data-placement="top" rel="popover">
+			<div id="clip2" class="clipBox"></div>
+		  </div>
+		  <div id="bsBox4" class="clipbg popoverOption" onClick="powerup4()" data-content="Unlock at lvl 14" data-original-title="Power of Nature" title data-toggle="popover" data-placement="top" rel="popover">
+			<div id="clip4" class="clipBox"></div>
+		  </div>
+		  
+          <hr class="clear-fix">
+          <h5 class="clear-fix">Permanent</h5>
+		  
+		  <div id="bsBox1" class="clipbg popoverOption" onClick="powerup1()" data-content="Pay 50 000 green and 10 000 red to increase XP gain by double" data-original-title="Battery" title data-toggle="popover" data-placement="top" rel="popover">
+		  </div>
+		  <div id="bsBox3" class="clipbg popoverOption" onClick="powerup3()" data-content="Unlock at lvl 12" data-original-title="Shield" title data-toggle="popover" data-placement="top" rel="popover">
+		  </div>
+		  <div id="bsBox5" class="clipbg popoverOption" onClick="powerup5()" data-content="Unlock at lvl 16" data-original-title="Armageddon" title data-toggle="popover" data-placement="top" rel="popover">
+		  </div>
+		  
+        </div><!--power up ends-->
+        <div class="tab-pane" id="Achivements">
+          <div class="achivement popoverOption" id="a0" data-content="You have collected a total of 10 energy." data-original-title="Peasant" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+          <div class="achivement popoverOption" id="a1" data-content="You have collected a total of 1,000 energy." data-original-title="Environmentalist" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+          <div class="achivement popoverOption" id="a2" data-content="You have collected a total of 10,000 energy." data-original-title="Nature Enthusiast" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+          <div class="achivement popoverOption" id="a3" data-content="You have collected a total of 100,000 energy." data-original-title="Energyphilia" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+          <div class="achivement popoverOption" id="a4" data-content="You have collected a total of 500,000 energy." data-original-title="The Energy Born" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+          <div class="achivement popoverOption" id="a5"  data-content="You have collected a total of 1,000,000 energy." data-original-title="Energy Master" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+          <div class="achivement popoverOption" id="a6" data-content="You have converted a total of 10,000 energy." data-original-title="Scientist" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+          <div class="achivement popoverOption" id="a7" data-content="You have converted a total of 50,000 energy." data-original-title="Convertalist" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+          <div class="achivement popoverOption" id="a8" data-content="You have converted a total of 500,000 energy." data-original-title="Alchemist" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+          <div class="achivement popoverOption" id="a9" data-content="You have converted a total of 5,000,000 energy." data-original-title="Material Enthusiast" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+          <div class="achivement popoverOption" id="a10" data-content="You have converted a total of 50,000,000 energy." data-original-title="Element Creater" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+          <div class="achivement popoverOption" id="a11" data-content="You have converted a total of 500,000,000 energy." data-original-title="Conversion Master" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+          <div class="achivement popoverOption" id="a12" data-content="You have reached level 5." data-original-title="Noob" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+          <div class="achivement popoverOption" id="a13" data-content="You have reached level 10." data-original-title="Apprentice" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+          <div class="achivement popoverOption" id="a14" data-content="You have reached level 15." data-original-title="Accepted" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+          <div class="achivement popoverOption" id="a15" data-content="You have reached level 20." data-original-title="Professional" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+          <div class="achivement popoverOption" id="a16" data-content="You have reached level 25." data-original-title="Extremist" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+          <div class="achivement popoverOption" id="a17" data-content="You have farmed a total of 100 energy." data-original-title="Farmer" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+          <div class="achivement popoverOption" id="a18" data-content="You have farmed a total of 5,000 energy." data-original-title="Tax Cheater" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+          <div class="achivement popoverOption" id="a19" data-content="You have farmed a total of 100,000 energy." data-original-title="Unemployed" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+          <div class="achivement popoverOption" id="a20" data-content="You have farmed a total of 5,000,000 energy." data-original-title="Slave Owner" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+          <div class="achivement popoverOption" id="a21" data-content="You have farmed a total of 1,000,000,000 energy." data-original-title="Spoiled" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+          <div class="achivement popoverOption" id="a22" data-content="You have a total of 10 upgrades." data-original-title="Engineer" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+          <div class="achivement popoverOption" id="a23" data-content="You have a total of 50 upgrades." data-original-title="Architect" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+          <div class="achivement popoverOption" id="a24" data-content="You have a total of 100 upgrades." data-original-title="Upgradomaniac" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+          <div class="achivement popoverOption" id="a25" data-content="You have a total of 500 upgrades." data-original-title="City Owner" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+          <div class="achivement popoverOption" id="a26" data-content="You have a total of 1,000 upgrades." data-original-title="World Dominator" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+          <div class="achivement popoverOption" id="a27" data-content="You have a total of 10 Farms." data-original-title="Allowance Saver" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+          <div class="achivement popoverOption" id="a28" data-content="You have a total of 50 Farms." data-original-title="Invester" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+          <div class="achivement popoverOption" id="a29" data-content="You have a total of 100 Farms." data-original-title="Share Holder" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+          <div class="achivement popoverOption" id="a30" data-content="You have a total of 500 Farms." data-original-title="Bill Counterfeiter" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+          <div class="achivement popoverOption" id="a31" data-content="You have a total of 1,000 Farms." data-original-title="Wolf Of Wallstreet" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+          <div class="achivement popoverOption" id="a32" data-content="You have a total of 100 energies." data-original-title="Tightwad" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+          <div class="achivement popoverOption" id="a33" data-content="You have a total of 10,000 energies." data-original-title="Ungenerous" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+          <div class="achivement popoverOption" id="a34" data-content="You have a total of 1,000,000 energies." data-original-title="Collector" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+          <div class="achivement popoverOption" id="a35" data-content="You have a total of 10,000,000 energies." data-original-title="Energy Maniac" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+          <div class="achivement popoverOption" id="a36" data-content="You have a total of 100,000,000 energies." data-original-title="Hoarder" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+		  <div class="achivement popoverOption" id="a37" data-content="Pick up 10 green in a row." data-original-title="Baby Steps" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+		  <div class="achivement popoverOption" id="a38" data-content="Pick up 100 green in a row." data-original-title="Dedicated" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+		  <div class="achivement popoverOption" id="a39" data-content="Pick up 250 green in a row." data-original-title="Zen Master" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+		  <div class="achivement popoverOption" id="a40" data-content="Pick up nothing for 10 hours." data-original-title="Botter" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+		  <div class="achivement popoverOption" id="a41" data-content="Visit our facebook page." data-original-title="Fanboy" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+		  <div class="achivement popoverOption" id="a42" data-content="Almost give up..." data-original-title="Troubling Times" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+		  <div class="achivement popoverOption" id="a43" data-content="Gain 10 achievements." data-original-title="Beginning Of The Journey" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+		  <div class="achivement popoverOption" id="a44" data-content="Gain 20 achievements." data-original-title="Getting There" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+		  <div class="achivement popoverOption" id="a45" data-content="Gain 30 achievements." data-original-title="Completionist" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+		  <div class="achivement popoverOption" id="a46" data-content="Gain 40 achievements." data-original-title="Achievement Whore" title data-toggle="popover" data-placement="top" rel="popover"> </div>
+        </div>
+        <!-------------------------------------------------------------------------------------------------------------------------
+      	  STATS
+          ------------------------------------------------------------------------------------------------------------------------>
+        <div class="tab-pane" id="Stats">
+          <p>Total Energy Currencies: <strong id="total_currencies">0</strong><br>
+            Total Energy Collected: <strong id="total_collected">0</strong><br>
+            Total Energy Farmed: <strong id="total_farmed">0</strong><br>
+            Total Energy Converted: <strong id="total_converted">0</strong><br>
+            Total Farms: <strong id="total_farms">0</strong><br>
+            Total Upgrades: <strong id="total_upgrades">0</strong></p>
+			<p>Convert Rate (Convert by clicking the energy square to the left)</p>
+			<select class="form-control" id="convert-rate">
+			  <option value="1">5000</option>
+			  <option value="10">50 000</option>
+			  <option value="100">500 000</option>
+			  <option value="1000">5 000 000</option>
+			</select>
+          <button type="button" class="redproduct" onClick="Game_Reset()">Reset Game</button>
+        </div>
+        <!-------------------------------------------------------------------------------------------------------------------------
+      	  UPDATES
+          ------------------------------------------------------------------------------------------------------------------------>
+        <div class="tab-pane" id="Updates">
+          <h5>Upcoming Features</h5>
+          <ul>
+            <li>Add an easy tutorial</li>
+			<li>Balancing Prices</li>
+            <li>Design overhaul</li>
+          </ul>
+          <hr>
+		  <h5>2014-06-09</h5>
+          <ul>
+          <li>Two new energies</li>
+		  <li>Added Power Ups!</li>
+		  <li>New Achievements</li>
+		  <li>Convert rate added under stats</li>
+		  <li>Farm / Upgrades buttons are smaller</li>
+          </ul>
+		  <h5>2014-05-07</h5>
+          <ul>
+          <li>Additional energies added</li>
+		  <li>Design 2.0</li>
+		  <li>Purchase new energy button added</li>
+		  <li>Performance improvement</li>
+          </ul>
+          <h5>2014-04-10</h5>
+          <ul>
+            <li>You can now convert currencies</li>
+          </ul>
+          <h5>2014-04-08</h5>
+          <ul>
+            <li>Added a Reset Game button</li>
+            <li>The Game has now autosave</li>
+            <li>Achivements are now available</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!--col6-->
+    <div class="col-lg-4">
+      <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title"><a class="fall" data-toggle="collapse" href="#collapseOne">FARMS</a></h4>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse">
+            <div class="panel-body"> 
+              <!-- GREEN -->
+              <div class="green product greenproduct popoverOption" id="farm0" onClick="farm0()" data-content="Green per second +1" data-toggle="popover" data-placement="left" rel="popover">
+                <p class="color-small color-upgrades">Wind Turbine</p><p class="big-number" id="green-farm-count-0">0</p>
+                <div class="currency"> <img src="images/green_small.jpg" class="color-img small-img" width="10" height="10" alt="small green">
+                  <p class="color-upgrades-small" id="green-farm-0">0</p>
+                </div>
+                <!-- currency --> 
+              </div>
+              <!--green-->
+			  
+              <!-- RED -->
+              <div class="red product greenproduct popoverOption" id="farm1" onClick="farm1()" data-content="Green per second multiplier" data-toggle="popover" data-placement="left" rel="popover">
+                <p class="color-small color-upgrades">Wind Turbine Improvement</p><p class="big-number" id="red-farm-count-1">0</p>
+                <div class="currency"> <img src="images/green_small.jpg" class="color-img small-img" width="10" height="10" alt="small green">
+                  <p class="color-upgrades-small" id="green-farm-1">0</p>
+                </div>
+                <!-- currency -->                
+                <div class="currency"> <img src="images/red_small.jpg" class="color-img small-img" width="10" height="10" alt="small red">
+                  <p class="color-upgrades-small" id="red-farm-1">0</p>
+                </div>
+                <!-- currency --> 
+              </div>
+              <!--red-->
+              
+              <div class="red product redproduct popoverOption" id="farm2" onClick="farm2()" data-content="Red per second +1" data-toggle="popover" data-placement="left" rel="popover">
+                <p class="color-small color-upgrades">Solar Plant</p><p class="big-number" id="red-farm-count-2">0</p>
+                <div class="currency"> <img src="images/green_small.jpg" class="color-img small-img" width="10" height="10" alt="small green">
+                  <p class="color-upgrades-small" id="green-farm-2">0</p>
+                </div>
+                <!-- currency -->                
+                <div class="currency"> <img src="images/red_small.jpg" class="color-img small-img" width="10" height="10" alt="small red">
+                  <p class="color-upgrades-small" id="red-farm-2">0</p>
+                </div>
+                <!-- currency --> 
+              </div>
+              <!--red--> 
+              
+              <!-- BLUE -->
+              <div class="blue product redproduct popoverOption" id="farm3" onClick="farm3()" data-content="Red per second multiplier" data-toggle="popover" data-placement="left" rel="popover">
+                <p class="color-small color-upgrades">Solar Plant Improvement</p><p class="big-number" id="blue-farm-count-3">0</p>
+                <div class="currency"> <img src="images/red_small.jpg" class="color-img small-img" width="10" height="10" alt="small red">
+                  <p class="color-upgrades-small" id="red-farm-3">0</p>
+                </div>
+                <!-- currency -->                
+                <div class="currency"> <img src="images/blue_small.jpg" class="color-img small-img" width="10" height="10" alt="small blue">
+                  <p class="color-upgrades-small" id="blue-farm-3">0</p>
+                </div>
+                <!-- currency --> 
+              </div>
+              <!--blue--> 
+              
+              <!-- BLUE -->
+              <div class="blue product blueproduct popoverOption" id="farm4" onClick="farm4()" data-content="Blue per second +1" data-toggle="popover" data-placement="left" rel="popover">
+                <p class="color-small color-upgrades">Hydro Power Station</p><p class="big-number" id="blue-farm-count-4">0</p>
+                <div class="currency"> <img src="images/red_small.jpg" class="color-img small-img" width="10" height="10" alt="small red">
+                  <p class="color-upgrades-small" id="red-farm-4">0</p>
+                </div>
+                <!-- currency -->                
+                <div class="currency"> <img src="images/blue_small.jpg" class="color-img small-img" width="10" height="10" alt="small blue">
+                  <p class="color-upgrades-small" id="blue-farm-4">0</p>
+                </div>
+                <!-- currency --> 
+              </div>
+              <!--blue--> 
+              
+              <!-- ORANGE -->
+              <div class="orange product blueproduct popoverOption" id="farm5" onClick="farm5()" data-content="Blue per second multiplier" data-toggle="popover" data-placement="left" rel="popover">
+                <p class="color-small color-upgrades">Hydro Power Station Improvement</p><p class="big-number" id="orange-farm-count-5">0</p>
+                <div class="currency"> <img src="images/blue_small.jpg" class="color-img small-img" width="10" height="10" alt="small blue">
+                  <p class="color-upgrades-small" id="blue-farm-5">0</p>
+                </div>
+                <!-- currency -->                
+                <div class="currency"> <img src="images/orange_small.jpg" class="color-img small-img" width="10" height="10" alt="small orange">
+                  <p class="color-upgrades-small" id="orange-farm-5">0</p>
+                </div>
+                <!-- currency --> 
+              </div>
+              <!--orange--> 
+              
+              <!-- ORANGE -->
+              <div class="orange product orangeproduct popoverOption" id="farm6" onClick="farm6()" data-content="Orange per second +1" data-toggle="popover" data-placement="left" rel="popover">
+                <p class="color-small color-upgrades">Fission Reactor</p><p class="big-number" id="orange-farm-count-6">0</p>
+                <div class="currency"> <img src="images/blue_small.jpg" class="color-img small-img" width="10" height="10" alt="small blue">
+                  <p class="color-upgrades-small" id="blue-farm-6">0</p>
+                </div>
+                <!-- currency -->                
+                <div class="currency"> <img src="images/orange_small.jpg" class="color-img small-img" width="10" height="10" alt="small orange">
+                  <p class="color-upgrades-small" id="orange-farm-6">0</p>
+                </div>
+                <!-- currency --> 
+              </div>
+              <!--orange-->
+			  
+			  <!-- PURPLE -->
+              <div class="purple product orangeproduct popoverOption" id="farm7" onClick="farm7()" data-content="Orange per second multiplier" data-toggle="popover" data-placement="left" rel="popover">
+                <p class="color-small color-upgrades">Fission Reactor Improvement</p><p class="big-number" id="purple-farm-count-7">0</p>
+                <div class="currency"> <img src="images/orange_small.jpg" class="color-img small-img" width="10" height="10" alt="small orange">
+                  <p class="color-upgrades-small" id="orange-farm-7">0</p>
+                </div>
+                <!-- currency -->                
+                <div class="currency"> <img src="images/purple_small.jpg" class="color-img small-img" width="10" height="10" alt="small purple">
+                  <p class="color-upgrades-small" id="purple-farm-7">0</p>
+                </div>
+                <!-- currency --> 
+              </div>
+              <!--purple--> 
+              
+              <!-- PURPLE -->
+              <div class="purple product purpleproduct popoverOption" id="farm8" onClick="farm8()" data-content="Purple per second +1" data-toggle="popover" data-placement="left" rel="popover">
+                <p class="color-small color-upgrades">Fusion Reactor</p><p class="big-number" id="purple-farm-count-8">0</p>
+                <div class="currency"> <img src="images/orange_small.jpg" class="color-img small-img" width="10" height="10" alt="small orange">
+                  <p class="color-upgrades-small" id="orange-farm-8">0</p>
+                </div>
+                <!-- currency -->                
+                <div class="currency"> <img src="images/purple_small.jpg" class="color-img small-img" width="10" height="10" alt="small purple">
+                  <p class="color-upgrades-small" id="purple-farm-8">0</p>
+                </div>
+                <!-- currency --> 
+              </div>
+              <!--purple--> 			  
+			  
+			  <!-- PINK -->
+              <div class="pink product purpleproduct popoverOption" id="farm9" onClick="farm9()" data-content="Purple per second multiplier" data-toggle="popover" data-placement="left" rel="popover">
+                <p class="color-small color-upgrades">Fusion Reactor Improvement</p><p class="big-number" id="pink-farm-count-9">0</p>
+                <div class="currency"> <img src="images/purple_small.jpg" class="color-img small-img" width="10" height="10" alt="small purple">
+                  <p class="color-upgrades-small" id="purple-farm-9">0</p>
+                </div>
+                <!-- currency -->                
+                <div class="currency"> <img src="images/pink_small.jpg" class="color-img small-img" width="10" height="10" alt="small pink">
+                  <p class="color-upgrades-small" id="pink-farm-9">0</p>
+                </div>
+                <!-- currency --> 
+              </div>
+              <!--pink--> 
+              
+              <!-- PINK -->
+              <div class="pink product pinkproduct popoverOption" id="farm10" onClick="farm10()" data-content="Pink per second +1" data-toggle="popover" data-placement="left" rel="popover">
+                <p class="color-small color-upgrades">Dimensional Vortex</p><p class="big-number" id="pink-farm-count-10">0</p>
+                <div class="currency"> <img src="images/purple_small.jpg" class="color-img small-img" width="10" height="10" alt="small purple">
+                  <p class="color-upgrades-small" id="purple-farm-10">0</p>
+                </div>
+                <!-- currency -->                
+                <div class="currency"> <img src="images/pink_small.jpg" class="color-img small-img" width="10" height="10" alt="small pink">
+                  <p class="color-upgrades-small" id="pink-farm-10">0</p>
+                </div>
+                <!-- currency --> 
+              </div>
+              <!--pink-->
+			  			  
+			  <!-- BLACK -->
+              <div class="black product pinkproduct popoverOption" id="farm11" onClick="farm11()" data-content="Pink per second multiplier" data-toggle="popover" data-placement="left" rel="popover">
+                <p class="color-small color-upgrades">Dimensional Vortex Improvement</p><p class="big-number" id="black-farm-count-11">0</p>
+                <div class="currency"> <img src="images/pink_small.jpg" class="color-img small-img" width="10" height="10" alt="small pink">
+                  <p class="color-upgrades-small" id="pink-farm-11">0</p>
+                </div>
+                <!-- currency -->                
+                <div class="currency"> <img src="images/black_small.jpg" class="color-img small-img" width="10" height="10" alt="small black">
+                  <p class="color-upgrades-small" id="black-farm-11">0</p>
+                </div>
+                <!-- currency --> 
+              </div>
+              <!--black--> 
+              
+              <!-- BLACK -->
+              <div class="black product blackproduct popoverOption" id="farm12" onClick="farm12()" data-content="Black per second +1" data-toggle="popover" data-placement="left" rel="popover">
+                <p class="color-small color-upgrades">Dark Energy Condenser</p><p class="big-number" id="black-farm-count-12">0</p>
+                <div class="currency"> <img src="images/pink_small.jpg" class="color-img small-img" width="10" height="10" alt="small pink">
+                  <p class="color-upgrades-small" id="pink-farm-12">0</p>
+                </div>
+                <!-- currency -->                
+                <div class="currency"> <img src="images/black_small.jpg" class="color-img small-img" width="10" height="10" alt="small black">
+                  <p class="color-upgrades-small" id="black-farm-12">0</p>
+                </div>
+                <!-- currency --> 
+              </div>
+              <!--black-->
+            </div>
+          </div>
+        </div>		
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title"><a class="fall" data-toggle="collapse" href="#collapseTwo">UPGRADES</a></h4>
+          </div>
+          <div id="collapseTwo" class="panel-collapse collapse">		  
+            <div class="panel-body"> 
+              <!-- GREEN -->
+              <div class="green product greenproduct popoverOption" id="upgrade0" onClick="upgrade0()" data-content="Green per click +1" data-placement="left" rel="popover">
+                <p class="color-small color-upgrades">Air Bender</p><p class="big-number" id="green-upgrade-count-0">0</p>
+                <div class="currency"> <img src="images/green_small.jpg" class="color-img small-img" width="10" height="10" alt="small green">
+                  <p class="color-upgrades-small" id="green-upgrade-0">0</p>
+                </div>
+                <!-- currency --> 
+              </div>
+              <!--green--> 
+              
+              <!-- RED -->
+              <div class="red product greenproduct popoverOption" id="upgrade1" onClick="upgrade1()" data-content="Green per click multiplier" data-placement="left" rel="popover">
+                <p class="color-small color-upgrades">Improved Air Bending</p><p class="big-number" id="red-upgrade-count-1">0</p>
+                <div class="currency"> <img src="images/green_small.jpg" class="color-img small-img" width="10" height="10" alt="small green">
+                  <p class="color-upgrades-small" id="green-upgrade-1">0</p>
+                </div>
+                <!-- currency -->                
+                <div class="currency"> <img src="images/red_small.jpg" class="color-img small-img" width="10" height="10" alt="small red">
+                  <p class="color-upgrades-small" id="red-upgrade-1">0</p>
+                </div>
+                <!-- currency --> 
+              </div>
+              <!--red-->
+              
+              <div class="red product redproduct popoverOption" id="upgrade2" onClick="upgrade2()" data-content="Red per click +1" data-placement="left" rel="popover">
+                <p class="color-small color-upgrades">Heat Absorber</p><p class="big-number" id="red-upgrade-count-2">0</p> 
+                <div class="currency"> <img src="images/green_small.jpg" class="color-img small-img" width="10" height="10" alt="small green">
+                  <p class="color-upgrades-small" id="green-upgrade-2">0</p>
+                </div>
+                <!-- currency -->                
+                <div class="currency"> <img src="images/red_small.jpg" class="color-img small-img" width="10" height="10" alt="small red">
+                  <p class="color-upgrades-small" id="red-upgrade-2">0</p>
+                </div>
+                <!-- currency --> 
+              </div>
+              <!--red--> 
+              
+              <!-- BLUE -->
+              <div class="blue product redproduct popoverOption" id="upgrade3" onClick="upgrade3()" data-content="Red per click multiplier" data-toggle="popover" data-placement="left" rel="popover">
+                <p class="color-small color-upgrades">Improved Heat Absorbtion</p><p class="big-number" id="blue-upgrade-count-3">0</p>
+                <div class="currency"> <img src="images/red_small.jpg" class="color-img small-img" width="10" height="10" alt="small red">
+                  <p class="color-upgrades-small" id="red-upgrade-3">0</p>
+                </div>
+                <!-- currency -->                
+                <div class="currency"> <img src="images/blue_small.jpg" class="color-img small-img" width="10" height="10" alt="small blue">
+                  <p class="color-upgrades-small" id="blue-upgrade-3">0</p>
+                </div>
+                <!-- currency --> 
+              </div>
+              <!--blue-->
+              
+              <div class="blue product blueproduct popoverOption" id="upgrade4" onClick="upgrade4()" data-content="Blue per click +1" data-toggle="popover" data-placement="left" rel="popover">
+                <p class="color-small color-upgrades">Current Manipulator</p><p class="big-number" id="blue-upgrade-count-4">0</p>
+                <div class="currency"> <img src="images/red_small.jpg" class="color-img small-img" width="10" height="10" alt="small red">
+                  <p class="color-upgrades-small" id="red-upgrade-4">0</p>
+                </div>
+                <!-- currency -->                
+                <div class="currency"> <img src="images/blue_small.jpg" class="color-img small-img" width="10" height="10" alt="small blue">
+                  <p class="color-upgrades-small" id="blue-upgrade-4">0</p>
+                </div>
+                <!-- currency --> 
+              </div>
+              <!--blue--> 
+              
+              <!-- ORANGE -->
+              <div class="orange product blueproduct popoverOption" id="upgrade5" onClick="upgrade5()" data-content="Blue per click multiplier" data-toggle="popover" data-placement="left" rel="popover">
+                <p class="color-small color-upgrades">Improved Current Manipulation</p><p class="big-number" id="orange-upgrade-count-5">0</p> 
+                <div class="currency"> <img src="images/blue_small.jpg" class="color-img small-img" width="10" height="10" alt="small blue">
+                  <p class="color-upgrades-small" id="blue-upgrade-5">0</p>
+                </div>
+                <!-- currency -->                
+                <div class="currency"> <img src="images/orange_small.jpg" class="color-img small-img" width="10" height="10" alt="small orange">
+                  <p class="color-upgrades-small" id="orange-upgrade-5">0</p>
+                </div>
+                <!-- currency --> 
+              </div>
+              <!--orange-->
+              
+              <div class="orange product orangeproduct popoverOption" id="upgrade6" onClick="upgrade6()" data-content="Orange per click +1" data-toggle="popover" data-placement="left" rel="popover">
+                <p class="color-small color-upgrades">Scientist</p><p class="big-number" id="orange-upgrade-count-6">0</p>
+                <div class="currency"> <img src="images/blue_small.jpg" class="color-img small-img" width="10" height="10" alt="small blue">
+                  <p class="color-upgrades-small" id="blue-upgrade-6">0</p>
+                </div>
+                <!-- currency -->                
+                <div class="currency"> <img src="images/orange_small.jpg" class="color-img small-img" width="10" height="10" alt="small orange">
+                  <p class="color-upgrades-small" id="orange-upgrade-6">0</p>
+                </div>
+                <!-- currency --> 
+              </div>
+              <!--orange-->
+			  
+			  <!-- PURPLE -->
+              <div class="purple product orangeproduct popoverOption" id="upgrade7" onClick="upgrade7()" data-content="Orange per click multiplier" data-toggle="popover" data-placement="left" rel="popover">
+                <p class="color-small color-upgrades">Improved Mathematics</p><p class="big-number" id="purple-upgrade-count-7">0</p> 
+                <div class="currency"> <img src="images/orange_small.jpg" class="color-img small-img" width="10" height="10" alt="small orange">
+                  <p class="color-upgrades-small" id="orange-upgrade-7">0</p>
+                </div>
+                <!-- currency -->                
+                <div class="currency"> <img src="images/purple_small.jpg" class="color-img small-img" width="10" height="10" alt="small purple">
+                  <p class="color-upgrades-small" id="purple-upgrade-7">0</p>
+                </div>
+                <!-- currency --> 
+              </div>
+              <!--purple-->
+              
+              <div class="purple product purpleproduct popoverOption" id="upgrade8" onClick="upgrade8()" data-content="Purple per click +1" data-toggle="popover" data-placement="left" rel="popover">
+                <p class="color-small color-upgrades">Mad Scientist</p><p class="big-number" id="purple-upgrade-count-8">0</p>
+                <div class="currency"> <img src="images/orange_small.jpg" class="color-img small-img" width="10" height="10" alt="small orange">
+                  <p class="color-upgrades-small" id="orange-upgrade-8">0</p>
+                </div>
+                <!-- currency -->                
+                <div class="currency"> <img src="images/purple_small.jpg" class="color-img small-img" width="10" height="10" alt="small purple">
+                  <p class="color-upgrades-small" id="purple-upgrade-8">0</p>
+                </div>
+                <!-- currency --> 
+              </div>
+              <!--purple-->			  
+			  
+			  <!-- PINK -->
+              <div class="pink product purpleproduct popoverOption" id="upgrade9" onClick="upgrade9()" data-content="Purple per click multiplier" data-toggle="popover" data-placement="left" rel="popover">
+                <p class="color-small color-upgrades">Improved Physics</p><p class="big-number" id="pink-upgrade-count-9">0</p> 
+                <div class="currency"> <img src="images/purple_small.jpg" class="color-img small-img" width="10" height="10" alt="small purple">
+                  <p class="color-upgrades-small" id="purple-upgrade-9">0</p>
+                </div>
+                <!-- currency -->                
+                <div class="currency"> <img src="images/pink_small.jpg" class="color-img small-img" width="10" height="10" alt="small pink">
+                  <p class="color-upgrades-small" id="pink-upgrade-9">0</p>
+                </div>
+                <!-- currency --> 
+              </div>
+              <!--pink-->
+              
+              <div class="pink product pinkproduct popoverOption" id="upgrade10" onClick="upgrade10()" data-content="Pink per click +1" data-toggle="popover" data-placement="left" rel="popover">
+                <p class="color-small color-upgrades">Teleporter</p><p class="big-number" id="pink-upgrade-count-10">0</p>
+                <div class="currency"> <img src="images/purple_small.jpg" class="color-img small-img" width="10" height="10" alt="small purple">
+                  <p class="color-upgrades-small" id="purple-upgrade-10">0</p>
+                </div>
+                <!-- currency -->                
+                <div class="currency"> <img src="images/pink_small.jpg" class="color-img small-img" width="10" height="10" alt="small pink">
+                  <p class="color-upgrades-small" id="pink-upgrade-10">0</p>
+                </div>
+                <!-- currency --> 
+              </div>
+              <!--pink-->
+
+			  <!-- BLACK -->
+              <div class="black product pinkproduct popoverOption" id="upgrade11" onClick="upgrade11()" data-content="Pink per click multiplier" data-toggle="popover" data-placement="left" rel="popover">
+                <p class="color-small color-upgrades">Improved Mind Power</p><p class="big-number" id="black-upgrade-count-11">0</p> 
+                <div class="currency"> <img src="images/pink_small.jpg" class="color-img small-img" width="10" height="10" alt="small pink">
+                  <p class="color-upgrades-small" id="pink-upgrade-11">0</p>
+                </div>
+                <!-- currency -->                
+                <div class="currency"> <img src="images/black_small.jpg" class="color-img small-img" width="10" height="10" alt="small black">
+                  <p class="color-upgrades-small" id="black-upgrade-11">0</p>
+                </div>
+                <!-- currency --> 
+              </div>
+              <!--black-->
+              
+              <div class="black product blackproduct popoverOption" id="upgrade12" onClick="upgrade12()" data-content="Black per click +1" data-toggle="popover" data-placement="left" rel="popover">
+                <p class="color-small color-upgrades">Anti-Being</p><p class="big-number" id="black-upgrade-count-12">0</p>
+                <div class="currency"> <img src="images/pink_small.jpg" class="color-img small-img" width="10" height="10" alt="small pink">
+                  <p class="color-upgrades-small" id="pink-upgrade-12">0</p>
+                </div>
+                <!-- currency -->                
+                <div class="currency"> <img src="images/black_small.jpg" class="color-img small-img" width="10" height="10" alt="small black">
+                  <p class="color-upgrades-small" id="black-upgrade-12">0</p>
+                </div>
+                <!-- currency --> 
+              </div>
+              <!--black--> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--row-->
+  <p class="color-small" id="copyright" align="center">copyright 2014 <a id="social-icon" href="https://www.facebook.com/energycollector" target="_blank" onClick="faceclick()"><img src="images/fbicon.PNG" width="30px" height="30px" title="facebook" /></a></p> 
+  <p align="center" class="hidden-xs"> 
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> 
+    <!-- enerycollect --> 
+    <ins class="adsbygoogle"
+             style="display:inline-block;width:728px;height:90px"
+             data-ad-client="ca-pub-7380511842160642"
+             data-ad-slot="7761605117"></ins> 
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script> 
+  </p>
+  <p align="center" class="hidden-lg hidden-md hidden-sm"> 
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> 
+    <!-- mobilannons --> 
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:320px;height:50px"
+         data-ad-client="ca-pub-7380511842160642"
+         data-ad-slot="8072342713"></ins> 
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script> 
+  </p>
+</div>
+<!--Container--> 
+
+<!-- LvL UP Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">LvL up!</h4>
+      </div>
+      <div class="modal-body"><p id="lvl-text"></p>
+		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<!-- ding -->
+		<p align="center">
+		<ins class="adsbygoogle"
+			 style="display:inline-block;width:468px;height:60px"
+			 data-ad-client="ca-pub-7380511842160642"
+			 data-ad-slot="9828703517"></ins>
+		<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
+		</p>
+	  </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
+<script src="js/jquery.js"></script> 
+<script src="js/kinetic.min.js"></script> 
+<!-- Include all compiled plugins (below), or include individual files as needed --> 
+<script src="js/bootstrap.min.js"></script>
+<script src="js/TweenMax.min.js"></script>
+<script src="js/energy.js"></script>
+</body>
+</html>
