@@ -856,7 +856,7 @@
 				  show: true,
 				  backdrop: false
 				})
-				l("lvl-text").innerHTML = "<h4>You Reached Level 18</h4>+ 2500000 Green<br>+ 1500000 Red<br>+ 800000 Blue<br>+ 200000 Orange<br>+ 60000 Purple<br>+ 20000 Pink<br>+ 50000 Black"; 	
+				l("lvl-text").innerHTML = "<h4>You Reached Level 20</h4>+ 2500000 Green<br>+ 1500000 Red<br>+ 800000 Blue<br>+ 200000 Orange<br>+ 60000 Purple<br>+ 20000 Pink<br>+ 50000 Black"; 	
   				currency[0]	= currency[0] + 2500000;	
 				currency[1]	= currency[1] + 1500000;
 				currency[2]	= currency[2] + 800000;
