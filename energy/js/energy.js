@@ -81,7 +81,7 @@
 		 Declare Variables
 		 =================================================================================*/
 		var timer2 = 0;
-		var xp = 10;		// start xp
+		var xp = 0;		// start xp
 		var lvl = 0;	// start lvl
 		var xpreq = 10*Math.pow(2,lvl);	// start xp requirement
 		
